@@ -1,0 +1,52 @@
+pipeline:
+  name: reacttodockerhub
+  identifier: reacttodockerhub
+  projectIdentifier: ORCA_onedev
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: testinggithub
+        repoName: react-pipeline-sample
+        build: <+input>
+  stages:
+    - stage:
+        name: build
+        identifier: build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Install node modules
+                  identifier: Install_node_modules
+                  spec:
+                    shell: Sh
+                    command: npm install
+              - step:
+                  type: Run
+                  name: build application
+                  identifier: build_application
+                  spec:
+                    shell: Sh
+                    command: npm run build
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
+                  spec:
+                    connectorRef: account.harnessImage
+                    repo: harnesstodocker
+                    tags:
+                      - latest
+                    dockerfile: Dockerfile
