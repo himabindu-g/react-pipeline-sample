@@ -1,0 +1,39 @@
+pipeline:
+  name: gcptoharness
+  identifier: gcptoharness
+  projectIdentifier: ORCA_onedev
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: testinggithub
+        repoName: react-pipeline-sample
+        build: <+input>
+  stages:
+    - stage:
+        name: build-stage
+        identifier: buildstage
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: gcpconnector
+              namespace: harness-delegate-ng
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    connectorRef: gcp
+                    image: stacksimplify/kubenginx:3.0.0
+                    shell: Sh
+                  description: checking the image
