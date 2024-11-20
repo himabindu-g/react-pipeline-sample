@@ -34,11 +34,11 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: BuildAndPushGCR
-                  name: BuildAndPushGCR_1
-                  identifier: BuildAndPushGCR_1
+                  type: BuildAndPushGAR
+                  name: BuildAndPushGAR_1
+                  identifier: BuildAndPushGAR_1
                   spec:
-                    connectorRef: gcpharnesstesttt
+                    connectorRef: serviceaccountgcp
                     host: us-central1-docker.pkg.dev
                     projectID: smooth-keel-441611-d0
                     imageName: nginx
