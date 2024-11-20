@@ -33,17 +33,6 @@ pipeline:
                     command: npm run build
                   timeout: ""
                   type: Run
-              - step:
-                  type: BuildAndPushGAR
-                  name: BuildAndPushGAR_1
-                  identifier: BuildAndPushGAR_1
-                  spec:
-                    connectorRef: gcpharnesstesttt
-                    host: us-central1-docker.pkg.dev
-                    projectID: smooth-keel-441611-d0
-                    imageName: nginx
-                    tags:
-                      - smooth-keel-441611-d0/testing
           platform:
             os: Linux
             arch: Amd64
