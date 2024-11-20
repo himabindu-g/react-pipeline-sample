@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_react_pipeline_sample_1732113840862-pr-trigger-input-set
+  identifier: Build_react_pipeline_sample_1732113840862prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: ORCA_onedev
+  pipeline:
+    identifier: Build_react_pipeline_sample_1732113840862
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
