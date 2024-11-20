@@ -39,7 +39,7 @@ pipeline:
                   identifier: Run_unit_tests
                   spec:
                     connectorRef: serviceaccountgcp
-                    image: nginx
+                    image: us-central1-docker.pkg.dev/smooth-keel-441611-d0/testing/nginx@sha256:2ebf3d369d813bcc6a531ba43e1859bd91ad5c8217ae33b821f5ffada06a6cd4
                     shell: Sh
                     reports:
                       type: JUnit
