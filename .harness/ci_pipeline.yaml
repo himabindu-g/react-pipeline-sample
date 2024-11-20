@@ -57,4 +57,4 @@ pipeline:
                     projectID: smooth-keel-441611-d0
                     imageName: us-central1-docker.pkg.dev/smooth-keel-441611-d0/testing/nginx@sha256:2ebf3d369d813bcc6a531ba43e1859bd91ad5c8217ae33b821f5ffada06a6cd4
                     tags:
-                      - latest
+                      - smooth-keel-441611-d0/testing
