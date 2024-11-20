@@ -34,13 +34,8 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: BuildAndPushGAR
-                  name: BuildAndPushGAR_1
-                  identifier: BuildAndPushGAR_1
-                  spec:
-                    connectorRef: serviceaccountgcp
-                    host: us-central1-docker.pkg.dev
-                    projectID: smooth-keel-441611-d0
-                    imageName: testing/nginx
-                    tags:
-                      - latest
+                  name: tt
+                  identifier: tt
+                  template:
+                    templateRef: Python_Install
+                    versionLabel: v1
