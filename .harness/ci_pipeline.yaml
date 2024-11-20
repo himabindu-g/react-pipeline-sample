@@ -41,6 +41,6 @@ pipeline:
                     connectorRef: serviceaccountgcp
                     host: us-central1-docker.pkg.dev
                     projectID: smooth-keel-441611-d0
-                    imageName: nginx
+                    imageName: testing/nginx
                     tags:
                       - latest
