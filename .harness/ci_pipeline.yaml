@@ -23,19 +23,22 @@ pipeline:
             paths: []
           buildIntelligence:
             enabled: false
-          infrastructure:
-            type: KubernetesDirect
-            spec:
-              connectorRef: gcpconnector
-              namespace: testing
-              automountServiceAccountToken: true
-              nodeSelector: {}
-              os: Linux
           execution:
             steps:
               - step:
-                  name: tt
-                  identifier: tt
-                  template:
-                    templateRef: Python_Install
-                    versionLabel: v1
+                  type: BuildAndPushGAR
+                  name: BuildAndPushGAR_1
+                  identifier: BuildAndPushGAR_1
+                  spec:
+                    connectorRef: serviceaccountgcp
+                    host: us-central1-docker.pkg.dev
+                    projectID: smooth-keel-441611-d0
+                    imageName: testing/hello-app
+                    tags:
+                      - "1.0"
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
