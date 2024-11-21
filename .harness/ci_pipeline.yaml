@@ -30,15 +30,18 @@ pipeline:
                   name: Run_1
                   identifier: Run_1
                   spec:
-                    connectorRef: serviceaccountgcp
-                    image: testing/nginx
                     shell: Sh
-                    command: echo "running the pipeline"
-          infrastructure:
-            type: KubernetesDirect
-            spec:
-              connectorRef: gcpconnector
-              namespace: testing
-              automountServiceAccountToken: true
-              nodeSelector: {}
-              os: Linux
+                    command: npm install
+              - step:
+                  type: Run
+                  name: Run_2
+                  identifier: Run_2
+                  spec:
+                    shell: Sh
+                    command: npm run build
+          platform:
+            os: Linux
+            arch: Arm64
+          runtime:
+            type: Cloud
+            spec: {}
