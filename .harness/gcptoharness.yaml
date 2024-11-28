@@ -34,6 +34,23 @@ pipeline:
                   identifier: Run_1
                   spec:
                     connectorRef: gcp
-                    image: stacksimplify/kubenginx:3.0.0
+                    image: us-central1-docker.pkg.dev/smooth-keel-441611-d0/testing/nginx
                     shell: Sh
+                    command: echo "pushing the image to  gcr"
                   description: checking the image
+              - step:
+                  type: BuildAndPushGAR
+                  name: BuildAndPushGAR_1
+                  identifier: BuildAndPushGAR_1
+                  spec:
+                    connectorRef: gcp
+                    host: us-central1-docker.pkg.dev
+                    projectID: smooth-keel-441611-d0
+                    imageName: testing/nginx
+                    tags:
+                      - v1
+          caching:
+            enabled: true
+            paths: []
+          buildIntelligence:
+            enabled: false
