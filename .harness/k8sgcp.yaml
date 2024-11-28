@@ -1,0 +1,45 @@
+pipeline:
+  name: k8s-gcp
+  identifier: k8sgcp
+  projectIdentifier: ORCA_onedev
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: testinggithub
+        repoName: react-pipeline-sample
+        build: <+input>
+  stages:
+    - stage:
+        name: build
+        identifier: build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: gcpconnector
+              namespace: testing
+              serviceAccountName: 719168683734-compute@developer.gserviceaccount.com
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              containerSecurityContext:
+                readOnlyRootFilesystem: true
+                runAsUser: "0"
+              os: Linux
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushGAR
+                  name: BuildAndPushGAR_1
+                  identifier: BuildAndPushGAR_1
+                  spec:
+                    connectorRef: serviceaccountgcp
+                    host: us-docker.pkg.dev
+                    projectID: smooth-keel-441611-d0
+                    imageName: hello-app
+                    tags:
+                      - "1.0"

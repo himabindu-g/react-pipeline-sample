@@ -1,0 +1,42 @@
+pipeline:
+  identifier: Build_react_pipeline_sample_1732113840862
+  name: Build react-pipeline-sample
+  orgIdentifier: default
+  projectIdentifier: ORCA_onedev
+  properties:
+    ci:
+      codebase:
+        build: <+input>
+        connectorRef: testinggithub
+        repoName: react-pipeline-sample
+  stages:
+    - stage:
+        identifier: build1
+        name: build
+        spec:
+          caching:
+            enabled: true
+          cloneCodebase: true
+          execution:
+            steps:
+              - step:
+                  identifier: installdependencies
+                  name: install dependencies
+                  spec:
+                    command: npm install
+                  timeout: ""
+                  type: Run
+              - step:
+                  identifier: build
+                  name: build
+                  spec:
+                    command: npm run build
+                  timeout: ""
+                  type: Run
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+        type: CI
